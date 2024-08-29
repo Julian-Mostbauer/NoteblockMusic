@@ -55,6 +55,6 @@ class MidiNote:
     ##################
 
     @staticmethod
-    def calculate_minecraft_tick_divisor(ticks_per_beat: int, tempo_in_microseconds_per_beat: int) -> float:
+    def calculate_minecraft_tick_ratio(ticks_per_beat: int, tempo_in_microseconds_per_beat: int) -> float:
         divisor = (ticks_per_beat * 50000) / tempo_in_microseconds_per_beat
         return divisor

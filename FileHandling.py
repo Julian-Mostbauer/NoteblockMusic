@@ -24,7 +24,7 @@ class FileHandler:
                 if msg.type == 'note_on' and msg.velocity > 0:
                     notes_with_time.append(MidiNote(msg.note, current_time))
 
-        return notes_with_time, MidiNote.calculate_minecraft_tick_divisor(midi_file.ticks_per_beat, bpm2tempo(bpm))
+        return notes_with_time, MidiNote.calculate_minecraft_tick_ratio(midi_file.ticks_per_beat, bpm2tempo(bpm))
 
     @staticmethod
     def build_data_pack(content: str, datapack_path: str) -> None:
