@@ -26,3 +26,9 @@ https://flat.io/score/636fcb42355217e28deaac0f-ragutorein-dao-xie-tan
 https://github.com/TheInfamousAlk/nbs
 
 https://www.reddit.com/r/MinecraftCommands/comments/16jlffl/how_can_i_get_a_disc_song_to_play_then_wait_for/
+
+## TODO
+
+- [x] Make playsound system
+- [ ] Make noteblock version of playsound
+- [ ] Make proper file builder for datapack
