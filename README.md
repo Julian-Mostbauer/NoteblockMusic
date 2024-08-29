@@ -14,6 +14,11 @@ I am currently working on two modes for the music player.
 1. Play the song using the playsound command.
 2. Play the song using noteblocks.
 
+## Preview
+
+https://github.com/user-attachments/assets/b51666aa-a020-41ee-b680-ba2793c7f291
+
+
 ## Development Resources
 
 https://flat.io/score/636fcb42355217e28deaac0f-ragutorein-dao-xie-tan
