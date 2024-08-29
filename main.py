@@ -1,21 +1,17 @@
-﻿from HelperClasses import *
-import mido
+﻿from MinecraftClasses import *
+from FileHandling import FileHandler
 
-datapack_path = r"C:\Users\chaos\curseforge\minecraft\Instances\1.20.4\saves\New World\datapacks\NoteBlockDataBack"
-
-
-def get_midi_notes(file: str) -> list[int]:
-    midi_file = mido.MidiFile(file)
-    return [msg.note for track in midi_file.tracks for msg in track if msg.type == 'note_on' and msg.velocity > 0]
+tmp_debug_datapack_path_remove_later_do_not_forget = r"C:\Users\chaos\curseforge\minecraft\Instances\1.20.4\saves\New World\datapacks\NoteBlockDataBack"
 
 
 def main() -> None:
-    bpm = 145
-    midi_notes: [int] = get_midi_notes("Music/Lagtrain.mid")
-    output = CommandBuilder.playsound(midi_notes, bpm)
+    # tcr = tick_convertion_ratio
+    [midi_notes, tcr] = FileHandler.read_midi_data("Music/Lagtrain.mid", 147)
 
-    with open(datapack_path + r"\data\main\functions\notes.mcfunction", "w") as f:
-        f.write(output)
+    output = CommandBuilder.playsound(midi_notes, tcr)
 
-    if __name__ == "__main__":
-        main()
+    FileHandler.build_data_pack(output, tmp_debug_datapack_path_remove_later_do_not_forget)
+
+
+if __name__ == "__main__":
+    main()
