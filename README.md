@@ -27,8 +27,11 @@ https://github.com/TheInfamousAlk/nbs
 
 https://www.reddit.com/r/MinecraftCommands/comments/16jlffl/how_can_i_get_a_disc_song_to_play_then_wait_for/
 
+https://gaming.stackexchange.com/questions/372642/how-do-i-correlate-the-pitch-value-in-the-playsound-command-to-the-notes-played
+
 ## TODO
 
 - [x] Make playsound system
+- [ ] PRIORITIZE: Fix playsound system
 - [ ] Make noteblock version of playsound
 - [ ] Make proper file builder for datapack

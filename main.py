@@ -5,10 +5,11 @@ tmp_debug_datapack_path_remove_later_do_not_forget = r"C:\Users\chaos\curseforge
 
 
 def main() -> None:
-    # tcr = tick_convertion_ratio
-    [midi_notes, tcr] = FileHandler.read_midi_data("Music/Lagtrain.mid", 147)
 
-    output = CommandBuilder.playsound(midi_notes, tcr)
+    # tcr = tick_convertion_ratio
+    [midi_notes, tcr] = FileHandler.read_midi_data("Music/Young Girl A - siinamota.mid", 130)
+
+    output = CommandBuilder.playsound(midi_notes, tcr, True)
 
     FileHandler.build_data_pack(output, tmp_debug_datapack_path_remove_later_do_not_forget)
 
