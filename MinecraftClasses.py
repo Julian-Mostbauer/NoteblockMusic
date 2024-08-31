@@ -1,7 +1,6 @@
 ﻿from NoteHandling import NoteBuilder, Note, MidiNote
 from typing import List
 
-
 class Position:
     def __init__(self, x, y, z):
         self.x = x
@@ -29,18 +28,6 @@ class CommandBuilder:
 
     @staticmethod
     def playsound(midi_notes: List[MidiNote], tcr: float, debug: bool = False) -> str:
-        if debug:
-            max_note = max(midi_notes, key=lambda x: x.midi_key).midi_key
-            min_note = min(midi_notes, key=lambda x: x.midi_key).midi_key
-
-            print("Debug Info: ")
-            print("Total Midi Notes: ", len(midi_notes))
-            print(f"Tick Convertion Ratio: {tcr}")
-            print(f"Total play time:  {midi_notes[-1].time / (20 * tcr)}s")
-            print("Midi Note Info:")
-            print(f"\tMax Note: {max_note}")
-            print(f"\tMin Note: {min_note}")
-
         return "\n".join(
             CommandBuilder.__build_playsound__(round(midi_note.time / tcr),
                                                NoteBuilder.midi_to_note(midi_note.midi_key), debug)
