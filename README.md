@@ -32,6 +32,6 @@ https://gaming.stackexchange.com/questions/372642/how-do-i-correlate-the-pitch-v
 ## TODO
 
 - [x] Make playsound system
-- [ ] PRIORITIZE: Fix playsound system
+- [x] PRIORITIZE: Fix playsound system
 - [ ] Make noteblock version of playsound
 - [ ] Make proper file builder for datapack

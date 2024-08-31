@@ -9,7 +9,7 @@ def main() -> None:
     tcr = MidiNote.calculate_tcr(midi_data.ticks_per_beat, bpm2tempo(147))
 
     midi_data.display_debug_info(tcr)
-
+    
     output = CommandBuilder.playsound(midi_data.notes, tcr, True)
 
     FileHandler.build_data_pack(output, tmp_debug_datapack_path_remove_later_do_not_forget)

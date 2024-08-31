@@ -1,7 +1,6 @@
 ﻿import mido
 from mido import bpm2tempo
 
-import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
@@ -12,11 +11,10 @@ class MidiData:
     def __init__(self, notes: list[MidiNote], ticks_per_beat: int):
         self.notes: list[MidiNote] = notes
         self.ticks_per_beat: int = ticks_per_beat
+        self.max_note = max(notes, key=lambda x: x.midi_key).midi_key
+        self.min_note = min(notes, key=lambda x: x.midi_key).midi_key
 
     def display_debug_info(self, tcr: float) -> None:
-        max_note = max(self.notes, key=lambda x: x.midi_key).midi_key
-        min_note = min(self.notes, key=lambda x: x.midi_key).midi_key
-
         too_large_notes = [note for note in self.notes if note.midi_key > MidiNote.conversion_note_range.stop - 1]
         too_small_notes = [note for note in self.notes if note.midi_key < MidiNote.conversion_note_range.start]
         clipped_notes = too_large_notes + too_small_notes
@@ -26,19 +24,20 @@ class MidiData:
         print(f"Tick Convertion Ratio: {tcr}")
         print(f"Total play time:  {self.notes[-1].time / (20 * tcr)}s")
         print("Midi Note Info:")
-        print(f"\tMax Note: {max_note}")
-        print(f"\tMin Note: {min_note}")
+        print(f"\tMax Note: {self.max_note}")
+        print(f"\tMin Note: {self.min_note}")
 
         print("Clamped Notes:")
         print("\tTotal Clamped Notes: ", len(clipped_notes))
         print("\tToo high: ", len(too_large_notes))
         print("\tToo low: ", len(too_small_notes))
 
+    def plot_notes(self):
         # Make a diagram of the notes
         plt.title = "Midi Notes"
         fig, ax = plt.subplots()
         ax.set_xlim([0, self.notes[-1].time])
-        ax.set_ylim([min_note, max_note])
+        ax.set_ylim([self.min_note, self.max_note])
 
         for note in self.notes:
             ax.add_patch(mpatches.Rectangle((note.time, note.midi_key), 1, 1, color='blue'))
