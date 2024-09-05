@@ -1,9 +1,4 @@
 ﻿import mido
-from mido import bpm2tempo
-
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-
 from NoteHandling import MidiNote
 
 
@@ -33,6 +28,9 @@ class MidiData:
         print("\tToo low: ", len(too_small_notes))
 
     def plot_notes(self):
+        import matplotlib.pyplot as plt
+        import matplotlib.patches as m_patches
+
         # Make a diagram of the notes
         plt.title = "Midi Notes"
         fig, ax = plt.subplots()
@@ -40,17 +38,13 @@ class MidiData:
         ax.set_ylim([self.min_note, self.max_note])
 
         for note in self.notes:
-            ax.add_patch(mpatches.Rectangle((note.time, note.midi_key), 1, 1, color='blue'))
+            ax.add_patch(m_patches.Rectangle((note.time, note.midi_key), 1, 1, color='blue'))
 
         plt.show()
         plt.close()
 
 
 class FileHandler:
-    ##################
-    # static methods #
-    ##################
-
     @staticmethod
     def read_midi_data(file: str) -> MidiData:
         midi_file = mido.MidiFile(file)
@@ -68,7 +62,10 @@ class FileHandler:
         return MidiData(notes_with_time, midi_file.ticks_per_beat)
 
     @staticmethod
-    def build_data_pack(content: str, datapack_path: str) -> None:
+    def build_data_pack(datapack_path: str, playsound_commands: str, place_commands: str) -> None:
         ## create the notes
         with open(datapack_path + r"\data\main\functions\notes.mcfunction", "w") as f:
-            f.write(content)
+            f.write(playsound_commands)
+
+        with open(datapack_path + r"\data\main\functions\place_music_player.mcfunction", "w") as f:
+            f.write(place_commands)
