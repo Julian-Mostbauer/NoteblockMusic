@@ -23,19 +23,30 @@ class CommandBuilder:
         Block]:
         blocks: List[Block] = []
         position = Position(0, 0, 0)
+        was_previous_delay = False
 
         for i, midi_note in enumerate(midi_notes):
+            was_previous_delay = True
             delay = midi_notes[i].time if i == 0 else midi_notes[i].time - midi_notes[i - 1].time
             delay = round(delay / tcr)  # convert to minecraft ticks
 
             if delay > 0:
                 delay_blocks = RedstoneHandler.delay_to_minecraft_blocks(delay, position)
-                delay_block_offset = delay_blocks[-1].position
+                print(delay, [db.absolute_str() for db in delay_blocks])
+                delay_block_offset = (delay_blocks[-1].position - delay_blocks[0].position)
                 position += delay_block_offset + Position(1, 0, 0)
                 blocks += delay_blocks
+            else:
+                print("no delay")
+                was_previous_delay = False
 
-            note_blocks = MinecraftNoteBuilder.midi_to_note_blocks(instrument_palate, midi_note, position)
-            position += Position(1, 0, 0)  # offset of a note in direction of the next note will always be 1
+            if was_previous_delay:
+                position += Position(1, 0, 0)  # offset of a note in direction of the next note will always be 1
+                note_blocks = MinecraftNoteBuilder.midi_to_note_blocks(instrument_palate, midi_note, position)
+            else:
+                position += Position(0, 0, 1)
+                note_blocks = MinecraftNoteBuilder.midi_to_note_blocks(instrument_palate, midi_note, position)
+                position -= Position(0, 0, 1)
 
             blocks += note_blocks
         return blocks

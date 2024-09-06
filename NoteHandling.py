@@ -17,10 +17,6 @@ class MidiNote:
     def __str__(self) -> str:
         return f"[key: {self.midi_key}, time: {self.time}]"
 
-    ##################
-    # static methods #
-    ##################
-
     @staticmethod
     def calculate_tcr(ticks_per_beat: int, tempo_in_microseconds_per_beat: int) -> float:
         """

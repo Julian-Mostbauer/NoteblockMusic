@@ -18,7 +18,6 @@ I am currently working on two modes for the music player.
 
 https://github.com/user-attachments/assets/b51666aa-a020-41ee-b680-ba2793c7f291
 
-
 ## Development Resources
 
 https://flat.io/score/636fcb42355217e28deaac0f-ragutorein-dao-xie-tan
@@ -32,6 +31,6 @@ https://gaming.stackexchange.com/questions/372642/how-do-i-correlate-the-pitch-v
 ## TODO
 
 - [x] Make playsound system
-- [x] PRIORITIZE: Fix playsound system
-- [ ] Make noteblock version of playsound
+- [x] Make noteblock place version
+- [ ] PRIORITIZE: Fix noteblock place version
 - [ ] Make proper file builder for datapack

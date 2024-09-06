@@ -1,6 +1,7 @@
 ﻿from __future__ import annotations
 from typing import Dict
 
+
 class Position:
     def __init__(self, x, y, z):
         self.x = x
@@ -15,6 +16,9 @@ class Position:
 
     def __add__(self, other: Position) -> Position:
         return Position(self.x + other.x, self.y + other.y, self.z + other.z)
+
+    def __sub__(self, other: Position) -> Position:
+        return Position(self.x - other.x, self.y - other.y, self.z - other.z)
 
 
 class Block:
