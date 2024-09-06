@@ -16,7 +16,7 @@ I am currently working on two modes for the music player.
 
 ## Preview
 
-https://github.com/user-attachments/assets/b51666aa-a020-41ee-b680-ba2793c7f291
+https://github.com/user-attachments/assets/57fb2ad2-b1dd-49d0-ada7-8d16528d85b8
 
 ## Development Resources
 
