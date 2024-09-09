@@ -16,6 +16,8 @@ I am currently working on two modes for the music player.
 
 ## Preview
 
+https://github.com/user-attachments/assets/57fb2ad2-b1dd-49d0-ada7-8d16528d85b8
+
 ## Development Resources
 
 https://flat.io/score/636fcb42355217e28deaac0f-ragutorein-dao-xie-tan
