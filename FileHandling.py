@@ -61,9 +61,14 @@ class FileHandler:
     def open_file(self):
         self.file_path = filedialog.askopenfilename(title="Submit your midi file",
                                                     filetypes=(("Midi Files", "*.mid"), ("Midi Files", "*.midi"))
-                                                    ) if self.build_mode else r"C:\Users\chaos\PycharmProjects\NoteblockMusic\Music\Young Girl A - siinamota.mid"
-        self.pack_name = f"Pack_for_{os.path.basename(self.file_path).split('.')[0]}"
-        self.output_path = f"Output\\{self.pack_name}" if self.build_mode else r"C:\Users\chaos\curseforge\minecraft\Instances\1.20.4\saves\New World\datapacks\NoteBlockDataBack"
+                                                    ) if (
+                self.build_mode == BuildMode.RELEASE) else r"C:\Users\chaos\PycharmProjects\NoteblockMusic\Music\Young Girl A - siinamota.mid"
+
+        self.pack_name = f"Pack_for_{os.path.basename(self.file_path).split('.')[0]}" if (
+                    self.build_mode == BuildMode.RELEASE) else "DebugPack"
+
+        self.output_path = f"Output\\{self.pack_name}" if (
+                self.build_mode == BuildMode.RELEASE) else r"C:\Users\chaos\curseforge\minecraft\Instances\1.20.4\saves\New World\datapacks\NoteBlockDataBack"
 
     def read_midi_data(self) -> MidiData:
         if not self.file_path:
@@ -88,7 +93,7 @@ class FileHandler:
             raise FileNotFoundError("No output path provided")
 
         # build the data pack, if release mode is used and the output path does not already exist
-        if self.build_mode and not os.path.exists(self.output_path):
+        if (self.build_mode == BuildMode.RELEASE) and not os.path.exists(self.output_path):
             os.makedirs(self.output_path + r"\data\main\functions", exist_ok=True)
             os.makedirs(self.output_path + r"\data\minecraft\tags\functions", exist_ok=True)
 
