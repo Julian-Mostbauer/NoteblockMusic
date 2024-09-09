@@ -31,13 +31,11 @@ class CommandBuilder:
             delay = round(delay / tcr)  # convert to minecraft ticks
 
             if delay > 0:
-                delay_blocks = RedstoneHandler.delay_to_minecraft_blocks(delay, position)
-                print(delay, [db.absolute_str() for db in delay_blocks])
+                delay_blocks = RedstoneHandler.delay_to_minecraft_blocks(delay, position)                
                 delay_block_offset = (delay_blocks[-1].position - delay_blocks[0].position)
                 position += delay_block_offset + Position(1, 0, 0)
                 blocks += delay_blocks
             else:
-                print("no delay")
                 was_previous_delay = False
 
             if was_previous_delay:
@@ -53,7 +51,7 @@ class CommandBuilder:
 
     @staticmethod
     def __build_playsound__(time: int, note: MinecraftNote, debug: bool = False) -> str:
-        timing_prefix = f"execute if score timer is_playing matches 1 if score timer music matches {time} as @a at @s run"
+        timing_prefix = f"execute if score timer music matches {time} as @a at @s run"
         return f"{timing_prefix} playsound minecraft:block.note_block.{note.instrument} master @a ~ ~ ~ 1 {note.get_pitch()}" + (
             f"\n{timing_prefix} tellraw @a \"<music-player> {time}: playing {note.get_pitch()} with {note.instrument}\"" if debug else "")
 

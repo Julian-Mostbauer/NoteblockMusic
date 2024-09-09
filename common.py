@@ -1,5 +1,11 @@
 ﻿from __future__ import annotations
 from typing import Dict
+from enum import Enum
+
+
+class BuildMode(Enum):
+    DEBUG = False
+    RELEASE = True
 
 
 class Position:
